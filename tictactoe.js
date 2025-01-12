@@ -1,25 +1,25 @@
 const Tictactoe = {
     player: "X",
-    state: ["", "", "", "", "", "", "", "", ""],
+    state: ["", "", "", "", "", "", "", "", ""], //empty game board
     gameOver: false,
 
-    start() {
+    start() { //start the game
         this.makeBoard();
         document.getElementById("reset").addEventListener("click", () => this.reset());
     },
 
-    reset() {
+    reset() {  //reset the game
         this.state = ["", "", "", "", "", "", "", "", ""];
         this.gameOver = false;
         this.player = "X";
         this.makeBoard();
     },
 
-    updateMessage (msg) {
+    updateMessage (msg) { //change the text below the board
         document.getElementById("message").innerText = msg;
     },
 
-    makeBoard() {
+    makeBoard() { //create the game board
         const board = document.querySelector(".board");
         board.innerHTML = "";
         this.state.forEach((cell, index) => {
@@ -33,9 +33,8 @@ const Tictactoe = {
         this.updateMessage(`Player ${this.player}'s turn`);
     },
 
-    checkMove(i, cellElement) { 
+    checkMove(i, cellElement) {  //checks how the move affects the game
 
-        console.log("check move");
         if (this.gameOver || this.state[i]) {
             return;
         }
@@ -58,7 +57,7 @@ const Tictactoe = {
         }
     },
 
-    checkWin() {
+    checkWin() { //checks if a player has won
         const winningCombos = [
             [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
             [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
